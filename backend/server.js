@@ -15,12 +15,11 @@ app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
 // Configure multer for larger files
-const upload = multer({ 
-  dest: 'uploads/',
-  limits: {
-    fileSize: 100 * 1024 * 1024, // 100MB limit
-  }
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 100 * 1024 * 1024 }
 });
+
 
 app.use(cors());
 
